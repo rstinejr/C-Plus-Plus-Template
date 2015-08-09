@@ -3,7 +3,8 @@
 #include <boost/test/unit_test.hpp>
 #include "../Board.hpp"
 
-BOOST_AUTO_TEST_CASE(testBoard)
+BOOST_AUTO_TEST_CASE(cellStartsEmpty)
 {
-  BOOST_CHECK(false);
+    Board board;
+    BOOST_CHECK(board.cellAt(3,3)->isEmpty());
 }
