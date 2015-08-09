@@ -19,8 +19,12 @@ Board.o:	Board.cpp Board.hpp
 $(PGM):	$(OBJS)
 	g++ -o $@ $(OBJS) $(MY_BIN_LDFLAGS)
 
+test:	Board.o
+	make -C test test
+		
 clean:
 	rm -f  $(PGM) $(OBJS)
-
+	make -C test clean
+		
 run:	$(PGM)
 	./$(PGM)
