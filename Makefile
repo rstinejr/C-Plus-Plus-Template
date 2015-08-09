@@ -4,18 +4,18 @@ MY_BIN_CFLAGS  = -g -O0
 MY_BIN_LDFLAGS = -lstdc++ -lrt
 
 PGM  = array
-OBJS = array.o
+OBJS = main.o Board.o
 
 .PHONY:	clean run 
 
 all:	$(PGM)
 
-array.o:	array.cpp
-	g++ -Wall -g $(MY_BIN_CFLAGS) -c array.cpp -o $@
-	
-TicTacToe.o:	TicTacToe.cpp TicTacToe.hpp
-	g++ -Wall -g $(MY_BIN_CFLAGS) -c TicTacToe.cpp -o $@
+main.o:	main.cpp Board.hpp
+	g++ -Wall -g $(MY_BIN_CFLAGS) -c main.cpp -o $@
 
+Board.o:	Board.cpp Board.hpp
+	g++ -Wall -g $(MY_BIN_CFLAGS) -c Board.cpp -o $@
+	
 $(PGM):	$(OBJS)
 	g++ -o $@ $(OBJS) $(MY_BIN_LDFLAGS)
 
