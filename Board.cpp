@@ -1,40 +1,40 @@
 #include "Board.hpp"
 
 Cell::Cell()
+  : _empty(true)
 {
-		_empty = true;
 }
 
 bool Cell::isEmpty()
 {
-	return _empty;
+    return _empty;
 }
 
 void Board::allocCells()
 {
-  for (int i = 0; i < MAX_ROW; i++)
-	  for (int j = 0; j < MAX_COL; j++)
-		 	Matrix[i][j] = new Cell();
+    for (int i = 0; i < MAX_ROW; i++)
+       for (int j = 0; j < MAX_COL; j++)
+           Matrix[i][j] = new Cell();
 }
 
 void Board::freeCells()
 {
-	for (int i = 0; i < MAX_ROW; i++)
-    for (int j = 0; j < MAX_COL; j++)
-		 	delete Matrix[i][j];
+    for (int i = 0; i < MAX_ROW; i++)
+        for (int j = 0; j < MAX_COL; j++)
+	    delete Matrix[i][j];
 }
 
 Board::Board()
 {
-		allocCells();
+    allocCells();
 }
 
 Board::~Board()
 {
-	freeCells();
+    freeCells();
 }
 
 Cell * Board::cellAt(int i, int j)
 {
-  return Matrix[i][j];
+    return Matrix[i][j];
 }
