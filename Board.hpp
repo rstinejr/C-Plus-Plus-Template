@@ -13,16 +13,17 @@ public:
 class Board
 {
 private:
-    static const int MAX_ROW = 20;
-    static const int MAX_COL = 20;
-    Cell  * Matrix[MAX_ROW] [MAX_COL];
+	const int _rows;
+	const int _cols;
+
+    Cell  *_matrix;
 
     void allocCells();
 
     void freeCells();
 
 public:
-    Board();
+    Board(int rows, int cols);
     ~Board();
     Cell * cellAt(int i, int j);
 };

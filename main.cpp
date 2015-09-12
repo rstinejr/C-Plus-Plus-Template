@@ -8,8 +8,9 @@ int main()
 {
 	cout << "work on 2-D arrays." << endl;
 
+    Board b2(7, 11);
 
-	Board *b = new Board();
+	Board *b = new Board(15, 30);
 
 	Cell *c = b->cellAt(3,3);
 

@@ -12,19 +12,16 @@ bool Cell::isEmpty()
 
 void Board::allocCells()
 {
-    for (int i = 0; i < MAX_ROW; i++)
-       for (int j = 0; j < MAX_COL; j++)
-           Matrix[i][j] = new Cell();
+	_matrix = new Cell[_rows * _cols];
 }
 
 void Board::freeCells()
 {
-    for (int i = 0; i < MAX_ROW; i++)
-        for (int j = 0; j < MAX_COL; j++)
-	    delete Matrix[i][j];
+    delete [] _matrix;
 }
 
-Board::Board()
+Board::Board(int rows, int cols)
+  : _rows(rows), _cols(cols)
 {
     allocCells();
 }
@@ -36,5 +33,7 @@ Board::~Board()
 
 Cell * Board::cellAt(int i, int j)
 {
-    return Matrix[i][j];
+    return (i < 0 || i >= _rows || j < 0 || j >= _cols)
+    		? (Cell *) 0
+    		: & _matrix[i * _rows + j];
 }
