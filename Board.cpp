@@ -1,5 +1,7 @@
 #include "Board.hpp"
 
+using namespace my_board;
+
 Cell::Cell()
   : _empty(true)
 {
@@ -37,3 +39,4 @@ Cell * Board::cellAt(int i, int j)
     		? (Cell *) 0
     		: & _matrix[i * _rows + j];
 }
+

@@ -1,6 +1,8 @@
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
+namespace my_board
+{
 class Cell
 {
 private:
@@ -27,5 +29,5 @@ public:
     ~Board();
     Cell * cellAt(int i, int j);
 };
-
+}
 #endif

@@ -3,6 +3,7 @@
 #include<iostream>
 
 using namespace std;
+using namespace my_board;
 
 int main()
 {
