@@ -4,10 +4,10 @@
 class Cell
 {
 private:
-	bool _empty;
+    bool _empty;
 public:		
-	Cell();
-	bool isEmpty();
+    Cell();
+    bool isEmpty();
 };
 
 class Board
@@ -15,16 +15,16 @@ class Board
 private:
     static const int MAX_ROW = 20;
     static const int MAX_COL = 20;
-	Cell  * Matrix[MAX_ROW] [MAX_COL];
+    Cell  * Matrix[MAX_ROW] [MAX_COL];
 
-	void allocCells();
+    void allocCells();
 
-	void freeCells();
+    void freeCells();
 
 public:
-	Board();
-	~Board();
-  Cell * cellAt(int i, int j);
+    Board();
+    ~Board();
+    Cell * cellAt(int i, int j);
 };
 
 #endif
