@@ -1,4 +1,4 @@
-#include "Board.hpp"
+#include <Board.hpp>
 
 using namespace my_board;
 
