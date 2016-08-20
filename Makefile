@@ -1,27 +1,31 @@
 ##############
 
 INCS = includes
-CFLAGS = -c -g -O0 -Wall -I$(INCS)
+MY_CFLAGS = -c -g -O0 -Wall -I$(INCS)
 MY_LDFLAGS = -lstdc++ -lrt
 OBJS = objs/main.o objs/Board.o
 PGM = array
 
 ##############
 
-.PHONY:	clean run 
+.PHONY:	clean run test
 
 all: $(PGM)
 
 $(OBJS):	objs
 
+objs/Board.o:	includes/Board.hpp
+
+objs/main.o:	includes/Board.hpp
+
 objs/%.o:	src/%.cpp
-	g++ $(CFLAGS) $< -o $@
+	g++ $(MY_CFLAGS) $< -o $@
 
 objs:	
 	mkdir objs
 
 $(PGM):	$(OBJS)
-	g++ $(MY_LDFLAGS) -o $@ $(OBJS) 
+	g++ -o $@ $(OBJS) $(MY_LDFLAGS) 
 
 test:	$(OBJS)
 	make -C test test
