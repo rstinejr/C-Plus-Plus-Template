@@ -1,35 +1,33 @@
 ##############
 
-MY_BIN_CFLAGS  = -g -O0 
-MY_BIN_LDFLAGS = -lstdc++ -lrt
-
-PGM  = array
 INCS = includes
-LIB_OBJS = objs/Board.o
-OBJS = main.o
-SRC  = src
+CFLAGS = -c -g -O0 -Wall -I$(INCS)
+MY_LDFLAGS = -lstdc++ -lrt
+OBJS = objs/main.o objs/Board.o
+PGM = array
+
+##############
 
 .PHONY:	clean run 
 
-all:	$(PGM)
+all: $(PGM)
 
-main.o:	main.cpp $(INCS)/Board.hpp
-	g++ -Wall -g $(MY_BIN_CFLAGS) -I$(INCS) -c main.cpp -o $@
+$(OBJS):	objs
 
-objs:   
+objs/%.o:	src/%.cpp
+	g++ $(CFLAGS) $< -o $@
+
+objs:	
 	mkdir objs
 
-objs/Board.o:	objs $(SRC)/Board.cpp $(INCS)/Board.hpp
-	g++ -Wall -g $(MY_BIN_CFLAGS) -I$(INCS) -c $(SRC)/Board.cpp -o $@
-	
-$(PGM):	$(OBJS) $(LIB_OBJS)
-	g++ -o $@ $(OBJS) $(LIB_OBJS) $(MY_BIN_LDFLAGS)
+$(PGM):	$(OBJS)
+	g++ $(MY_LDFLAGS) -o $@ $(OBJS) 
 
-test:	$(LIB_OBJS)
+test:	$(OBJS)
 	make -C test test
 		
 clean:
-	rm -f  $(PGM) $(OBJS) $(LIB_OBJS)
+	rm -rf objs $(PGM)
 	make -C test clean
 		
 run:	$(PGM)
