@@ -4,7 +4,8 @@ INCS = includes
 MY_CFLAGS = -c -g -O0 -Wall -I$(INCS)
 MY_LDFLAGS = -lstdc++ -lrt
 OBJS = objs/main.o objs/Board.o
-PGM = array
+
+PGM  = array
 
 ##############
 
@@ -12,14 +13,15 @@ PGM = array
 
 all: $(PGM)
 
-$(OBJS):	objs
+$(OBJS):	deps objs
 
-objs/Board.o:	includes/Board.hpp
-
-objs/main.o:	includes/Board.hpp
+-include deps/*
 
 objs/%.o:	src/%.cpp
-	g++ $(MY_CFLAGS) $< -o $@
+	g++ $(MY_CFLAGS) -MMD -MF"$(@:objs/%.o=deps/%.d)" -o"$@" "$<"
+
+deps:
+	mkdir deps
 
 objs:	
 	mkdir objs
@@ -31,7 +33,7 @@ test:	$(OBJS)
 	make -C test test
 		
 clean:
-	rm -rf objs $(PGM)
+	rm -rf deps objs $(PGM)
 	make -C test clean
 		
 run:	$(PGM)

@@ -5,6 +5,7 @@
 /.cproject
 pom.xml
 pom.xml.asc
+*.d
 *.o
 *.jar
 *.class
