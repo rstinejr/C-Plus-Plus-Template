@@ -3,7 +3,8 @@
 INCS = includes
 MY_CFLAGS = -c -g -O0 -Wall -I$(INCS)
 MY_LDFLAGS = -lstdc++ -lrt
-OBJS = objs/main.o objs/Board.o
+SRC  = $(shell ls src/*.cpp)
+OBJS = $(SRC:src/%.cpp=objs/%.o)
 
 PGM  = array
 
