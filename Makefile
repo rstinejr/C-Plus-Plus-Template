@@ -13,18 +13,12 @@ PGM  = array
 
 all: $(PGM)
 
-$(OBJS):	deps objs
-
 -include deps/*
 
 objs/%.o:	src/%.cpp
+	[ -d objs ] || mkdir objs
+	[ -d deps ] || mkdir deps
 	g++ $(MY_CFLAGS) -MMD -MF"$(@:objs/%.o=deps/%.d)" -o"$@" "$<"
-
-deps:
-	mkdir deps
-
-objs:	
-	mkdir objs
 
 $(PGM):	$(OBJS)
 	g++ -o $@ $(OBJS) $(MY_LDFLAGS) 
