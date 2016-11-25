@@ -16,7 +16,7 @@ objs/Board.o:	includes/Board.hpp
 
 objs/main.o:	includes/Board.hpp
 
-./objs/%.o:	./src/%.cpp
+objs/%.o:	src/%.cpp
 	[ -d objs ] || mkdir objs
 	g++ $(MY_CFLAGS) $< -o $@
 
