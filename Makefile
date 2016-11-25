@@ -12,17 +12,13 @@ PGM = array
 
 all: $(PGM)
 
-$(OBJS):	objs
-
 objs/Board.o:	includes/Board.hpp
 
 objs/main.o:	includes/Board.hpp
 
 objs/%.o:	src/%.cpp
+	[ -d objs ] || mkdir objs
 	g++ $(MY_CFLAGS) $< -o $@
-
-objs:	
-	mkdir objs
 
 $(PGM):	$(OBJS)
 	g++ -o $@ $(OBJS) $(MY_LDFLAGS) 
