@@ -1,35 +1,22 @@
 ##############
-
+# Project-specify part of Make script.
+# Tempplate build commands are in Makefile.inc.
+#
+# Targets:
+#     all   - build $(PGM)
+#     run   - build and run $(PGM)
+#     test  - build and run unit tests.
+#     clean - delete all generated files.
+#
 INCS = includes
 MY_CFLAGS = -c -g -O0 -Wall -I$(INCS)
 MY_LDFLAGS = -lstdc++ -lrt
-SRC  = $(shell ls src/*.cpp)
-OBJS = $(SRC:src/%.cpp=objs/%.o)
 
 PGM  = array
 
-##############
+.PHONY:	run
 
-.PHONY:	clean run test
-
-all: $(PGM)
-
--include deps/*
-
-objs/%.o:	src/%.cpp
-	@[ -d objs ] || mkdir objs
-	@[ -d deps ] || mkdir deps
-	g++ $(MY_CFLAGS) -MMD -MF"$(@:objs/%.o=deps/%.d)" -o"$@" "$<"
-
-$(PGM):	$(OBJS)
-	g++ -o $@ $(OBJS) $(MY_LDFLAGS) 
-
-test:	$(OBJS)
-	make -C test test
-		
-clean:
-	rm -rf deps objs $(PGM)
-	make -C test clean
+include Makefile.inc
 		
 run:	$(PGM)
 	./$(PGM)
