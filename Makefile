@@ -16,8 +16,8 @@ all: $(PGM)
 -include deps/*
 
 objs/%.o:	src/%.cpp
-	[ -d objs ] || mkdir objs
-	[ -d deps ] || mkdir deps
+	@[ -d objs ] || mkdir objs
+	@[ -d deps ] || mkdir deps
 	g++ $(MY_CFLAGS) -MMD -MF"$(@:objs/%.o=deps/%.d)" -o"$@" "$<"
 
 $(PGM):	$(OBJS)
