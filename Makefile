@@ -1,6 +1,6 @@
 ##############
-# Project-specify part of Make script.
-# Tempplate build commands are in Makefile.inc.
+# Project-specific part of Make script for a C++ project.
+# Template build commands are in Makefile.inc.
 #
 # Targets:
 #     all   - build $(PGM)
